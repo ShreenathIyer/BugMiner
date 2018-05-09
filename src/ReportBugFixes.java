@@ -30,7 +30,7 @@ public class ReportBugFixes {
 
     public static void main(String[] args) {
         ReportBugFixes report = new ReportBugFixes();
-        HashMap<String, String> map = report.parseCSV("../projects.csv");
+        HashMap<String, String> map = report.parseCSV("resources/projects.csv");
         for(String key: map.keySet()){
             System.out.println(key + " " + map.get(key));
         }
