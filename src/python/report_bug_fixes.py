@@ -7,7 +7,7 @@ import urllib.request as urllib2
 
 class ReportBugFixes(object):
     def __init__(self):
-        self.json_path = os.path.abspath("../../resources/commits.json")
+        self.json_path = os.path.abspath("../../output/commits.json")
         self.data = self.parse_json()
         self.commit_couples = [{"count": 0, "commit_pairs": {}}]
 
