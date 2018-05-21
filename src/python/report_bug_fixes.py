@@ -3,13 +3,23 @@ import json
 import re
 from bs4 import BeautifulSoup
 import urllib.request as urllib2
+import argparse
 
 
 class ReportBugFixes(object):
     def __init__(self):
-        self.json_path = os.path.abspath("../../output/commits.json")
+        self.json_path = os.path.abspath("../../output/SHIRO/commits_SHIRO_1.json")
+        self.project_name = self.parse_arguments()
         self.data = self.parse_json()
         self.commit_couples = [{"count": 0, "commit_pairs": {}}]
+
+    def parse_arguments(self):
+        parser = argparse.ArgumentParser(add_help=False, formatter_class=argparse.RawTextHelpFormatter)
+        parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS,
+                            help="create git commit pairs for given project")
+        parser.add_argument("project_name", type=str, help="name of the project")
+        args = parser.parse_args()
+        return args.project_name
 
     def is_issue_bug(self, url):
         if not url:
