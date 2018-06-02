@@ -4,11 +4,12 @@ import re
 from bs4 import BeautifulSoup
 import urllib.request as urllib2
 import argparse
+import glob
 
 
 class ReportBugFixes(object):
     def __init__(self):
-        self.json_path = os.path.abspath("../../output/SHIRO/commits_SHIRO_1.json")
+        self.json_path = os.path.abspath("../../output/SHIRO/")
         self.project_name = self.parse_arguments()
         self.data = self.parse_json()
         self.commit_couples = [{"count": 0, "commit_pairs": {}}]
@@ -41,13 +42,24 @@ class ReportBugFixes(object):
         return False
 
     def parse_json(self):
-        json_file = open(self.json_path, 'r', encoding='utf-8')
-        return json.load(json_file)
+        all_data = list()
+        for filename in glob.glob(os.path.join(self.json_path, '*.json')):
+            json_file = open(filename, 'r', encoding='utf-8')
+            current_json_data = json.load(json_file)
+            if "items" in current_json_data:
+                all_data.extend(current_json_data["items"])
+        # print(len(all_data))
+        return all_data
 
     def is_valid_jira_id(self, jira_id):
         if jira_id is not None:
             return jira_id.group().upper()
         return jira_id
+
+    def dump_to_json(self, commit_pairs):
+        filewrite = open("commit_pairs.json", 'w', encoding='utf-8')
+        json.dump(commit_pairs, filewrite)
+        filewrite.close()
 
     def create_url(self, jira_id):
         url = 'https://issues.apache.org/jira/browse/'
@@ -56,7 +68,7 @@ class ReportBugFixes(object):
         return None
 
     def create_commit_pairs(self):
-        for commit_history in self.data["items"]:
+        for commit_history in self.data:
             project_name = commit_history["repository"]["name"].lower()
             if project_name in commit_history["commit"]["message"].lower():
                 jira_id = re.search(r"\w*"+project_name+"-\w*", commit_history["commit"]["message"].lower())
@@ -65,13 +77,13 @@ class ReportBugFixes(object):
                 if term and jira_id.group() not in self.commit_couples[0]["commit_pairs"]\
                         and self.is_issue_bug(url):
                     self.commit_couples[0]["count"] += 1
-                    self.commit_couples[0]["commit_pairs"][term] = list()
-                    self.commit_couples[0]["commit_pairs"][term].append(commit_history["sha"])
-                    self.commit_couples[0]["commit_pairs"][term].\
-                        append(commit_history["parents"][0]["sha"])
-        return self.commit_couples
+                    self.commit_couples[0]["commit_pairs"][term] = dict()
+                    self.commit_couples[0]["commit_pairs"][term]["fixed_bug_sha"] = commit_history["sha"]
+                    self.commit_couples[0]["commit_pairs"][term]["parent_bug_sha"] = commit_history["parents"][0]["sha"]
+                    self.commit_couples[0]["commit_pairs"][term]["commit_message"] = commit_history["commit"]["message"]
+        self.dump_to_json(self.commit_couples)
 
 
 if __name__ == "__main__":
     report = ReportBugFixes()
-    print(report.create_commit_pairs())
+    # print(report.create_commit_pairs())
