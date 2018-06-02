@@ -56,8 +56,9 @@ class ReportBugFixes(object):
             return jira_id.group().upper()
         return jira_id
 
-    def dump_to_json(self, commit_pairs):
-        filewrite = open("commit_pairs.json", 'w', encoding='utf-8')
+    def dump_to_json(self, commit_pairs, project_name):
+        path_to_output = "../output/"+project_name+"/commit_pairs_"+project_name
+        filewrite = open(path_to_output, 'w', encoding='utf-8')
         json.dump(commit_pairs, filewrite)
         filewrite.close()
 
@@ -81,7 +82,7 @@ class ReportBugFixes(object):
                     self.commit_couples[0]["commit_pairs"][term]["fixed_bug_sha"] = commit_history["sha"]
                     self.commit_couples[0]["commit_pairs"][term]["parent_bug_sha"] = commit_history["parents"][0]["sha"]
                     self.commit_couples[0]["commit_pairs"][term]["commit_message"] = commit_history["commit"]["message"]
-        self.dump_to_json(self.commit_couples)
+        self.dump_to_json(self.commit_couples, project_name)
 
 
 if __name__ == "__main__":

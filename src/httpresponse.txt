@@ -32,7 +32,7 @@
 <meta content="dd/MMM/yy" name="ajs-date-dmy"/>
 <meta content="dd/MMM/yy HH:mm" name="ajs-date-complete"/>
 <script type="text/javascript">var AJS=AJS||{};AJS.debug=true;</script>
-<meta content="A5KQ-2QAV-T4JA-FDED|1b13436d155d5f35c47d51062b95d93d37567a6d|lout" id="atlassian-token" name="atlassian-token"/>
+<meta content="A5KQ-2QAV-T4JA-FDED|66daf981f3fd41126102055c4d5e75a50790b20a|lout" id="atlassian-token" name="atlassian-token"/>
 <link href="/jira/s/7lkp9w/76005/1c78b578e5c0e813799ab2baea47b6f7/_/favicon.ico" rel="shortcut icon"/>
 <!--[if IE]><![endif]-->
 <script type="text/javascript">
@@ -107,7 +107,7 @@ WRM._unparsedData["com.atlassian.jira.project-templates-plugin:project-templates
 WRM._unparsedData["com.atlassian.jira.plugins.jira-wiki-editor:wiki-editor-resources.help-data"]="{\"showHelp\":true,\"editorDocumentationUrl\":[\"https://docs.atlassian.com/jira/jcore-docs-076/Visual+editing\"],\"editorDocumentationTitle\":[\"Show me documentation for the visual editor\"]}";
 WRM._unparsedData["com.atlassian.jira.plugins.jira-wiki-editor:wiki-editor-resources.thumbnails-allowed"]="false";
 WRM._unparsedData["jira.webresources:user-message-flags.adminLockout"]="{}";
-WRM._unparsedData["jira.request.correlation-id"]="\"da3f3e1c6133c4\"";
+WRM._unparsedData["jira.request.correlation-id"]="\"7a1afc224226e6\"";
 WRM._unparsedData["project-id"]="12310950";
 WRM._unparsedData["project-key"]="\"SHIRO\"";
 WRM._unparsedData["project-name"]="\"Shiro\"";
@@ -320,14 +320,14 @@ Hi Mike, If you would please</p>
 <dl>
 <dt>Votes:</dt>
 <dd>
-<span class="aui-badge vote-state-off" id="vote-data">16</span>
+<span class="aui-badge vote-state-off" id="vote-data">17</span>
 <span id="vote-label" title="You have to be logged in to vote for an issue.">Vote for this issue</span>
 </dd>
 </dl>
 <dl>
 <dt>Watchers:</dt>
 <dd>
-<span class="aui-badge watch-state-off" id="watcher-data">13</span>
+<span class="aui-badge watch-state-off" id="watcher-data">14</span>
 <span id="watch-label" title="You have to be logged in to watch an issue.">Start watching this issue</span>
 </dd>
 </dl>
@@ -425,25 +425,25 @@ if(window.WRM._dataArrived)window.WRM._dataArrived();</script>
 <script data-initially-rendered="" data-wrm-batch-type="resource" data-wrm-key="jira.webresources:bigpipe-init" src="/jira/s/d41d8cd98f00b204e9800998ecf8427e-CDN/7lkp9w/76005/1c78b578e5c0e813799ab2baea47b6f7/1.0/_/download/batch/jira.webresources:bigpipe-init/jira.webresources:bigpipe-init.js" type="text/javascript"></script>
 <form class="dont-default-focus" id="jira_request_timing_info">
 <fieldset class="parameters hidden">
-<input title="jira.request.start.millis" type="hidden" value="1527009575201"/>
-<input title="jira.request.server.time" type="hidden" value="152"/>
-<input title="jira.request.id" type="hidden" value="1039x1680049x1"/>
-<input title="jira.session.expiry.time" type="hidden" value="1527013174598"/>
+<input title="jira.request.start.millis" type="hidden" value="1527980539143"/>
+<input title="jira.request.server.time" type="hidden" value="142"/>
+<input title="jira.request.id" type="hidden" value="1382x26501532x2"/>
+<input title="jira.session.expiry.time" type="hidden" value="1527984138624"/>
 <input title="jira.session.expiry.in.mins" type="hidden" value="59"/>
-<input id="jiraConcurrentRequests" name="jira.request.concurrent.requests" type="hidden" value="1"/>
-<input title="db.reads.time.in.ms" type="hidden" value="17"/>
-<input title="db.conns.time.in.ms" type="hidden" value="24"/>
+<input id="jiraConcurrentRequests" name="jira.request.concurrent.requests" type="hidden" value="3"/>
+<input title="db.reads.time.in.ms" type="hidden" value="16"/>
+<input title="db.conns.time.in.ms" type="hidden" value="23"/>
 </fieldset>
 </form>
 <!--
-	                 REQUEST ID : 1039x1680049x1
-	          REQUEST TIMESTAMP : [22/May/2018:17:19:35 +0000]
-	               REQUEST TIME : 0.1520
-	                 ASESSIONID : qd1wb1
-	        CONCURRENT REQUESTS : 1
+	                 REQUEST ID : 1382x26501532x2
+	          REQUEST TIMESTAMP : [02/Jun/2018:23:02:19 +0000]
+	               REQUEST TIME : 0.1420
+	                 ASESSIONID : 1gsdwtx
+	        CONCURRENT REQUESTS : 3
 
-	                      db.reads : OpSnapshot{name='db.reads', invocationCount=14, elapsedTotal=17226823, elapsedMin=971422, elapsedMax=2341558, resultSetSize=0, cpuTotal=0, cpuMin=0, cpuMax=0}
-	                      db.conns : OpSnapshot{name='db.conns', invocationCount=19, elapsedTotal=24431999, elapsedMin=961505, elapsedMax=2379981, resultSetSize=0, cpuTotal=0, cpuMin=0, cpuMax=0}
+	                      db.reads : OpSnapshot{name='db.reads', invocationCount=14, elapsedTotal=16182126, elapsedMin=777157, elapsedMax=2405416, resultSetSize=0, cpuTotal=0, cpuMin=0, cpuMax=0}
+	                      db.conns : OpSnapshot{name='db.conns', invocationCount=19, elapsedTotal=23134095, elapsedMin=805873, elapsedMax=2441725, resultSetSize=0, cpuTotal=0, cpuMin=0, cpuMax=0}
 -->
 </body>
 </html>
