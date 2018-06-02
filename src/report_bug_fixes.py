@@ -9,7 +9,7 @@ import glob
 
 class ReportBugFixes(object):
     def __init__(self):
-        self.json_path = os.path.abspath("../../output/SHIRO/")
+        self.json_path = os.path.abspath("../output/SHIRO/")
         self.project_name = self.parse_arguments()
         self.data = self.parse_json()
         self.commit_couples = [{"count": 0, "commit_pairs": {}}]
@@ -86,4 +86,4 @@ class ReportBugFixes(object):
 
 if __name__ == "__main__":
     report = ReportBugFixes()
-    # print(report.create_commit_pairs())
+    print(report.create_commit_pairs())
