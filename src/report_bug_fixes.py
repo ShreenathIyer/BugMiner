@@ -13,7 +13,7 @@ class ReportBugFixes(object):
         self.resources = "../resources/"
         self.project_name = str(self.parse_arguments())
         self.data = list()
-        self.commit_couples = [{"count": 0, "commit_pairs": {}}]
+        self.commit_couples = []
 
     def parse_arguments(self):
         parser = argparse.ArgumentParser(add_help=False, formatter_class=argparse.RawTextHelpFormatter)
@@ -59,6 +59,10 @@ class ReportBugFixes(object):
         return jira_id
 
     def dump_to_json(self, commit_pairs, project_name):
+        path_to_output_directory = os.path.abspath(
+            "../output/" + project_name)
+        if not os.path.exists(path_to_output_directory):
+            os.mkdir(path_to_output_directory)
         path_to_output = os.path.abspath("../output/"+project_name+"/commit_pairs_"+project_name+".json")
         filewrite = open(path_to_output, 'w', encoding='utf-8')
         json.dump(commit_pairs, filewrite)
@@ -72,8 +76,8 @@ class ReportBugFixes(object):
 
     def create_commit_pairs(self, project_name):
         self.data = self.parse_json(project_name)
+        self.commit_couples = [{"count": 0, "commit_pairs": {}}]
         for commit_history in self.data:
-            #project_name = commit_history["repository"]["name"].lower()
             if project_name in commit_history["commit"]["message"].lower():
                 jira_id = re.search(r"\w*"+project_name+"-\w*", commit_history["commit"]["message"].lower())
                 term = self.is_valid_jira_id(jira_id)
@@ -87,7 +91,7 @@ class ReportBugFixes(object):
                         commit_history["parents"][0]["sha"]
                     self.commit_couples[0]["commit_pairs"][term]["commit_message"] = \
                         commit_history["commit"]["message"]
-        self.dump_to_json(self.commit_couples, self.project_name)
+        self.dump_to_json(self.commit_couples, project_name.upper())
 
     def get_bugs(self):
         project_obj = GetAllProjects()
