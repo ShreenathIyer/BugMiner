@@ -5,13 +5,14 @@ from bs4 import BeautifulSoup
 import urllib.request as urllib2
 import argparse
 import glob
+from src.get_all_projects import GetAllProjects
 
 
 class ReportBugFixes(object):
     def __init__(self):
-        self.json_path = os.path.abspath("../output/SHIRO/")
-        self.project_name = self.parse_arguments()
-        self.data = self.parse_json()
+        self.resources = "../resources/"
+        self.project_name = str(self.parse_arguments())
+        self.data = list()
         self.commit_couples = [{"count": 0, "commit_pairs": {}}]
 
     def parse_arguments(self):
@@ -41,9 +42,10 @@ class ReportBugFixes(object):
             return False
         return False
 
-    def parse_json(self):
+    def parse_json(self, current_project):
         all_data = list()
-        for filename in glob.glob(os.path.join(self.json_path, '*.json')):
+        json_path = os.path.abspath(self.resources + str(current_project))
+        for filename in glob.glob(os.path.join(json_path, '*.json')):
             json_file = open(filename, 'r', encoding='utf-8')
             current_json_data = json.load(json_file)
             if "items" in current_json_data:
@@ -57,7 +59,7 @@ class ReportBugFixes(object):
         return jira_id
 
     def dump_to_json(self, commit_pairs, project_name):
-        path_to_output = "../output/"+project_name+"/commit_pairs_"+project_name
+        path_to_output = os.path.abspath("../output/"+project_name+"/commit_pairs_"+project_name+".json")
         filewrite = open(path_to_output, 'w', encoding='utf-8')
         json.dump(commit_pairs, filewrite)
         filewrite.close()
@@ -68,9 +70,10 @@ class ReportBugFixes(object):
             return url + jira_id
         return None
 
-    def create_commit_pairs(self):
+    def create_commit_pairs(self, project_name):
+        self.data = self.parse_json(project_name)
         for commit_history in self.data:
-            project_name = commit_history["repository"]["name"].lower()
+            #project_name = commit_history["repository"]["name"].lower()
             if project_name in commit_history["commit"]["message"].lower():
                 jira_id = re.search(r"\w*"+project_name+"-\w*", commit_history["commit"]["message"].lower())
                 term = self.is_valid_jira_id(jira_id)
@@ -80,11 +83,22 @@ class ReportBugFixes(object):
                     self.commit_couples[0]["count"] += 1
                     self.commit_couples[0]["commit_pairs"][term] = dict()
                     self.commit_couples[0]["commit_pairs"][term]["fixed_bug_sha"] = commit_history["sha"]
-                    self.commit_couples[0]["commit_pairs"][term]["parent_bug_sha"] = commit_history["parents"][0]["sha"]
-                    self.commit_couples[0]["commit_pairs"][term]["commit_message"] = commit_history["commit"]["message"]
-        self.dump_to_json(self.commit_couples, project_name)
+                    self.commit_couples[0]["commit_pairs"][term]["parent_bug_sha"] = \
+                        commit_history["parents"][0]["sha"]
+                    self.commit_couples[0]["commit_pairs"][term]["commit_message"] = \
+                        commit_history["commit"]["message"]
+        self.dump_to_json(self.commit_couples, self.project_name)
+
+    def get_bugs(self):
+        project_obj = GetAllProjects()
+        all_projects = project_obj.read_projects_from_csv()
+        if self.project_name in all_projects:
+            self.create_commit_pairs(self.project_name.lower())
+        elif self.project_name == "ALL":
+            for current_project in all_projects:
+                self.create_commit_pairs(current_project.lower())
 
 
 if __name__ == "__main__":
     report = ReportBugFixes()
-    print(report.create_commit_pairs())
+    report.get_bugs()
