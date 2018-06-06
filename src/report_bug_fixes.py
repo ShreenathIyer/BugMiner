@@ -6,6 +6,7 @@ import urllib.request as urllib2
 import argparse
 import glob
 from src.get_all_projects import GetAllProjects
+from src.create_git_commits import CreateGitCommitHistory
 
 
 class ReportBugFixes(object):
@@ -74,6 +75,10 @@ class ReportBugFixes(object):
             return url + jira_id
         return None
 
+    def generate_history(self, project_name):
+        obj = CreateGitCommitHistory()
+        obj.create_commit_history(project_name)
+
     def create_commit_pairs(self, project_name):
         self.data = self.parse_json(project_name)
         self.commit_couples = [{"count": 0, "commit_pairs": {}}]
@@ -97,9 +102,11 @@ class ReportBugFixes(object):
         project_obj = GetAllProjects()
         all_projects = project_obj.read_projects_from_csv()
         if self.project_name in all_projects:
+            self.generate_history(self.project_name)
             self.create_commit_pairs(self.project_name.lower())
         elif self.project_name == "ALL":
             for current_project in all_projects:
+                self.generate_history(current_project)
                 self.create_commit_pairs(current_project.lower())
 
 
