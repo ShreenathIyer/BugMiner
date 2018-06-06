@@ -68,6 +68,7 @@ class ReportBugFixes(object):
         filewrite = open(path_to_output, 'w', encoding='utf-8')
         json.dump(commit_pairs, filewrite)
         filewrite.close()
+        print("[%s]: Writing to json file complete \n" % project_name.upper())
 
     def create_url(self, jira_id):
         url = 'https://issues.apache.org/jira/browse/'
@@ -82,6 +83,7 @@ class ReportBugFixes(object):
     def create_commit_pairs(self, project_name):
         self.data = self.parse_json(project_name)
         self.commit_couples = [{"count": 0, "commit_pairs": {}}]
+        print("[%s]: Creating commit pairs for potential bugs \n" % project_name.upper())
         for commit_history in self.data:
             if project_name in commit_history["commit"]["message"].lower():
                 jira_id = re.search(r"\w*"+project_name+"-\w*", commit_history["commit"]["message"].lower())

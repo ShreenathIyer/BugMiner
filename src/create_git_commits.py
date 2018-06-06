@@ -39,12 +39,13 @@ class CreateGitCommitHistory(object):
             os.mkdir(output_dir)
 
         for i in range(1, pages+1):
+            print("[%s]: Generating git commit history file #%d... \n" % (project_name.upper(), i))
             curl_command = curl_command_1 + str(project_name.lower()) + "+" + str(project_name.upper()) \
                            + curl_command_2 + str(i) + curl_command_3 + str(project_name.upper()) + curl_command_4 \
                            + str(project_name.upper()) + "_" + str(i) + curl_command_5
             curl_this = subprocess.Popen(curl_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             out, err = curl_this.communicate()
-        # print(err)
+        print("[%s]: Generated git commit history files" % project_name.upper())
 
 
 if __name__ == "__main__":
