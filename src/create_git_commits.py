@@ -15,7 +15,6 @@ class CreateGitCommitHistory(object):
         return str_page
 
     def get_page_count(self, project_name):
-        # curl_command_1 = 'curl -H "Accept: application/vnd.github.cloak-preview" "https://api.github.com/search/commits?q=repo:apache/shiro+SHIRO&sort=committer-date" -o commits.json -D headers.json'
         curl_command_1 = 'curl -H "Accept: application/vnd.github.cloak-preview" ' \
                          '"https://api.github.com/search/commits?q=repo:apache/'
         curl_command_2 = '&sort=committer-date" -o commits.json -D headers.json'
@@ -33,7 +32,7 @@ class CreateGitCommitHistory(object):
         curl_command_2 = '&sort=committer-date&page='
         curl_command_3 = '" -o ../resources/'
         curl_command_4 = '/commits_'
-        curl_command_5 = '.json -i'
+        curl_command_5 = '.json -D headers.json'
 
         output_dir = os.path.abspath('../resources/' + str(project_name.upper()))
         if not os.path.exists(output_dir):
@@ -49,5 +48,6 @@ class CreateGitCommitHistory(object):
 
 
 if __name__ == "__main__":
-    obj = CreateGitCommitHistory()
-    obj.create_commit_history('SHIRO')
+    pass
+    # obj = CreateGitCommitHistory()
+    # obj.create_commit_history('SHIRO')
