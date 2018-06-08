@@ -1,10 +1,13 @@
-Github Project Links,Jira Name of the project
-https://github.com/apache/shiro,SHIRO
-https://github.com/apache/bookkeeper,BOOKKEEPER
-https://github.com/apache/bval,BVAL
-https://github.com/apache/chukwa,CHUKWA
-https://github.com/apache/camel,CAMEL
-https://github.com/apache/jackrabbit,JACKRABBIT
-https://github.com/apache/maven,MAVEN
-https://github.com/apache/mahout,MAHOUT
-https://github.com/apache/karaf,KARAF
+Github Project Links,Jira Name of the project,JiraURL
+https://github.com/apache/shiro,SHIRO,https://issues.apache.org/jira/projects/SHIRO/
+https://github.com/apache/bookkeeper,BOOKKEEPER,https://issues.apache.org/jira/projects/BOOKKEEPER/
+,CLOUDSTACK,https://issues.apache.org/jira/projects/CLOUDSTACK/
+,SONARJAVA,https://jira.sonarsource.com/browse/SONARJAVA/
+,KEYCLOAK,https://issues.jboss.org/projects/KEYCLOAK/
+,TAJO,https://issues.apache.org/jira/projects/TAJO/
+,HIVE,https://issues.apache.org/jira/projects/HIVE/
+,SYNCOPE,https://issues.apache.org/jira/projects/SYNCOPE/
+,ACCUMULO,https://issues.apache.org/jira/projects/ACCUMULO/
+,AIRAVATA,https://issues.apache.org/jira/projects/AIRAVATA/
+,LANG,https://issues.apache.org/jira/projects/LANG/
+,WW(Struts),https://issues.apache.org/jira/projects/WW/
