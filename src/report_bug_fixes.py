@@ -70,17 +70,19 @@ class ReportBugFixes(object):
         filewrite.close()
         print("[%s]: Writing to json file complete \n" % project_name.upper())
 
-    def create_url(self, jira_id):
-        url = 'https://issues.apache.org/jira/browse/'
-        if jira_id is not None:
-            return url + jira_id
+    def create_url(self, project_name, urls_dict):
+        # url = 'https://issues.apache.org/jira/browse/'
+        # if jira_id is not None:
+        #     return url + jira_id
+        if project_name in urls_dict:
+            return urls_dict["project_name"]
         return None
 
     def generate_history(self, project_name):
         obj = CreateGitCommitHistory()
         obj.create_commit_history(project_name)
 
-    def create_commit_pairs(self, project_name):
+    def create_commit_pairs(self, project_name, jira_urls):
         self.data = self.parse_json(project_name)
         self.commit_couples = [{"count": 0, "commit_pairs": {}}]
         print("[%s]: Creating commit pairs for potential bugs \n" % project_name.upper())
@@ -88,7 +90,7 @@ class ReportBugFixes(object):
             if project_name in commit_history["commit"]["message"].lower():
                 jira_id = re.search(r"\w*"+project_name+"-\w*", commit_history["commit"]["message"].lower())
                 term = self.is_valid_jira_id(jira_id)
-                url = self.create_url(term)
+                url = self.create_url(project_name.upper(), jira_urls)
                 if term and jira_id.group() not in self.commit_couples[0]["commit_pairs"]\
                         and self.is_issue_bug(url):
                     self.commit_couples[0]["count"] += 1
@@ -102,14 +104,15 @@ class ReportBugFixes(object):
 
     def get_bugs(self):
         project_obj = GetAllProjects()
-        all_projects = project_obj.read_projects_from_csv()
+        all_projects_dict = project_obj.read_projects_from_csv()
+        all_projects = list(all_projects_dict.keys())
         if self.project_name in all_projects:
             self.generate_history(self.project_name)
-            self.create_commit_pairs(self.project_name.lower())
+            self.create_commit_pairs(self.project_name.lower(), all_projects_dict)
         elif self.project_name == "ALL":
             for current_project in all_projects:
                 self.generate_history(current_project)
-                self.create_commit_pairs(current_project.lower())
+                self.create_commit_pairs(current_project.lower(), all_projects_dict)
 
 
 if __name__ == "__main__":

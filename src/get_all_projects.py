@@ -19,6 +19,6 @@ class GetAllProjects:
 
 
 if __name__ == "__main__":
-     obj = GetAllProjects()
-     print(obj.read_projects_from_csv())
+     # obj = GetAllProjects()
+     # print(obj.read_projects_from_csv())
      pass
