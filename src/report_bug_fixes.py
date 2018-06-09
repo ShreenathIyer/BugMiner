@@ -70,12 +70,12 @@ class ReportBugFixes(object):
         filewrite.close()
         print("[%s]: Writing to json file complete \n" % project_name.upper())
 
-    def create_url(self, project_name, urls_dict):
+    def create_url(self, project_name, urls_dict, jira_id):
         # url = 'https://issues.apache.org/jira/browse/'
         # if jira_id is not None:
         #     return url + jira_id
-        if project_name in urls_dict:
-            return urls_dict["project_name"]
+        if project_name in urls_dict and jira_id is not None:
+            return urls_dict[project_name] + jira_id.group()
         return None
 
     def generate_history(self, project_name):
@@ -90,7 +90,7 @@ class ReportBugFixes(object):
             if project_name in commit_history["commit"]["message"].lower():
                 jira_id = re.search(r"\w*"+project_name+"-\w*", commit_history["commit"]["message"].lower())
                 term = self.is_valid_jira_id(jira_id)
-                url = self.create_url(project_name.upper(), jira_urls)
+                url = self.create_url(project_name.upper(), jira_urls, jira_id)
                 if term and jira_id.group() not in self.commit_couples[0]["commit_pairs"]\
                         and self.is_issue_bug(url):
                     self.commit_couples[0]["count"] += 1
