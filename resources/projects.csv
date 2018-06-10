@@ -1,7 +1,7 @@
 Github Project Links,Jira Name of the project,JiraURL
-https://github.com/apache/shiro,SHIRO,https://issues.apache.org/jira/projects/SHIRO/
-https://github.com/apache/bookkeeper,BOOKKEEPER,https://issues.apache.org/jira/projects/BOOKKEEPER/
-https://github.com/apache/cloudstack,CLOUDSTACK,https://issues.apache.org/jira/projects/CLOUDSTACK/
+https://github.com/apache/shiro,SHIRO,https://issues.apache.org/jira/browse/
+https://github.com/apache/bookkeeper,BOOKKEEPER,https://issues.apache.org/jira/browse/
+https://github.com/apache/cloudstack,CLOUDSTACK,https://issues.apache.org/jira/browse/
 https://github.com/SonarSource/sonar-java,SONARJAVA,https://jira.sonarsource.com/browse/SONARJAVA/
 https://github.com/keycloak/keycloak,KEYCLOAK,https://issues.jboss.org/projects/KEYCLOAK/
 https://github.com/apache/tajo,TAJO,https://issues.apache.org/jira/projects/TAJO/
