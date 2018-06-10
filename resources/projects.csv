@@ -6,11 +6,11 @@ https://github.com/SonarSource/sonar-java,SONARJAVA,https://jira.sonarsource.com
 https://github.com/keycloak/keycloak,KEYCLOAK,https://issues.jboss.org/projects/KEYCLOAK/
 https://github.com/apache/tajo,TAJO,https://issues.apache.org/jira/projects/TAJO/
 https://github.com/apache/hive,HIVE,https://issues.apache.org/jira/projects/HIVE/
-https://github.com/apache/syncope,SYNCOPE,https://issues.apache.org/jira/projects/SYNCOPE/
-https://github.com/apache/accumulo,ACCUMULO,https://issues.apache.org/jira/projects/ACCUMULO/
-https://github.com/apache/airavata,AIRAVATA,https://issues.apache.org/jira/projects/AIRAVATA/
-https://github.com/apache/commons-lang,LANG,https://issues.apache.org/jira/projects/LANG/
-https://github.com/apache/struts,WW(Struts),https://issues.apache.org/jira/projects/WW/
+https://github.com/apache/syncope,SYNCOPE,https://issues.apache.org/jira/browse/
+https://github.com/apache/accumulo,ACCUMULO,https://issues.apache.org/jira/browse/
+https://github.com/apache/airavata,AIRAVATA,https://issues.apache.org/jira/browse/
+https://github.com/apache/commons-lang,LANG,https://issues.apache.org/jira/browse/
+https://github.com/apache/struts,WW,https://issues.apache.org/jira/browse/
 https://github.com/SonarSource/sonarqube,SONAR,https://jira.sonarsource.com/browse/SONAR/
 https://github.com/DSpace/DSpace,DSPACE,https://jira.duraspace.org/projects/DS/
 https://github.com/apache/flink,FLINK,https://issues.apache.org/jira/secure/RapidBoard.jspa?rapidView=225&projectKey=FLINK
