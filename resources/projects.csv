@@ -1,11 +1,9 @@
 Github Project Links,Jira Name of the project,JiraURL
-https://github.com/apache/shiro,SHIRO,https://issues.apache.org/jira/browse/
-https://github.com/apache/bookkeeper,BOOKKEEPER,https://issues.apache.org/jira/browse/
 https://github.com/apache/cloudstack,CLOUDSTACK,https://issues.apache.org/jira/browse/
 https://github.com/SonarSource/sonar-java,SONARJAVA,https://jira.sonarsource.com/browse/SONARJAVA/
 https://github.com/keycloak/keycloak,KEYCLOAK,https://issues.jboss.org/projects/KEYCLOAK/
-https://github.com/apache/tajo,TAJO,https://issues.apache.org/jira/projects/TAJO/
-https://github.com/apache/hive,HIVE,https://issues.apache.org/jira/projects/HIVE/
+https://github.com/apache/tajo,TAJO,https://issues.apache.org/jira/browse/
+https://github.com/apache/hive,HIVE,https://issues.apache.org/jira/browse/
 https://github.com/apache/syncope,SYNCOPE,https://issues.apache.org/jira/browse/
 https://github.com/apache/accumulo,ACCUMULO,https://issues.apache.org/jira/browse/
 https://github.com/apache/airavata,AIRAVATA,https://issues.apache.org/jira/browse/
@@ -19,5 +17,7 @@ https://github.com/spring-projects/spring-data-redis,DATAREDIS,https://jira.spri
 https://github.com/resteasy/Resteasy,RESTEASY,https://issues.jboss.org/projects/RESTEASY/
 https://github.com/SonarSource/sonar-xml,SONARXML,https://jira.sonarsource.com/browse/SONARXML/
 https://github.com/streadway/amqp,AMQP,https://jira.spring.io/projects/AMQP/issues/AMQP-817?filter=allopenissues
-https://github.com/FenixEdu/bennu,BNN,https://jira.fenixedu.org/projects/BNN/issues/BNN-117?filter=allopenissues
 https://github.com/SonarSource/sonar-web,SONARWEB,https://jira.sonarsource.com/browse/SONARWEB/?selectedTab=com.atlassian.jira.jira-projects-plugin:summary-panel
+https://github.com/FenixEdu/bennu,BNN,https://jira.fenixedu.org/projects/BNN/issues/BNN-117?filter=allopenissues
+https://github.com/apache/shiro,SHIRO,https://issues.apache.org/jira/browse/
+https://github.com/apache/bookkeeper,BOOKKEEPER,https://issues.apache.org/jira/browse/
