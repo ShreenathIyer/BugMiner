@@ -1,22 +1,20 @@
 import unittest
-import sys
 from src.report_bug_fixes import ReportBugFixes
-from src.get_all_projects import GetAllProjects
 
 
 class TestReportBugFixes(unittest.TestCase):
     def setUp(self):
-        self.report = ReportBugFixes()
-        self.report.project_name = "HIVE"
-
-    def test_instance(self):
-        self.assertEqual(self.report.resources, "../resources/")
+        self.report_obj = ReportBugFixes()
+        self.project_name = "HIVE"
+        self.project_list = ["HIVE", "COMMONS-LANG", "COMMONS-MATH", "CLOUDSTACK", "SHIRO"]
 
     def test_is_issue_bug(self):
-        self.assertTrue(True)
-        # test_object = ReportBugFixes()
-        # url_return = test_object.is_issue_bug("https://issues.apache.org/jira/browse/CLOUDSTACK-10256")
-        # self.assertTrue(url_return, "[test_is_issue_bug]: Pass")
+        is_issue = self.report_obj.is_issue_bug("https://issues.apache.org/jira/browse/CLOUDSTACK-10256")
+        self.assertEqual(is_issue, True)
+
+    def test_is_issue_bug_empty(self):
+        is_issue = self.report_obj.is_issue_bug("")
+        self.assertEqual(is_issue, False)
 
     def test_parse_json(self):
         self.assertTrue(True)
@@ -39,9 +37,11 @@ class TestReportBugFixes(unittest.TestCase):
     def test_get_bugs(self):
         self.assertTrue(True)
 
+    def tearDown(self):
+        self.report_obj = None
+        self.project_name = None
+        self.project_list = []
+
 
 if __name__ == "__main__":
-    # if len(sys.argv) > 1:
-    #     TestReportBugFixes.project_name = sys.argv.pop()
-
     unittest.main()
