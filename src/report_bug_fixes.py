@@ -45,6 +45,8 @@ class ReportBugFixes(object):
 
     def parse_json(self, current_project):
         all_data = list()
+        if current_project == "math" or current_project == "lang":
+            current_project = "COMMONS-" + current_project
         json_path = os.path.abspath(self.resources + str(current_project))
         for filename in glob.glob(os.path.join(json_path, '*.json')):
             json_file = open(filename, 'r', encoding='utf-8')
@@ -71,16 +73,17 @@ class ReportBugFixes(object):
         print("[%s]: Writing to json file complete \n" % project_name.upper())
 
     def create_url(self, project_name, urls_dict, jira_id):
-        # url = 'https://issues.apache.org/jira/browse/'
-        # if jira_id is not None:
-        #     return url + jira_id
         if project_name in urls_dict and jira_id is not None:
             return urls_dict[project_name] + jira_id.group()
         return None
 
     def generate_history(self, project_name):
         obj = CreateGitCommitHistory()
-        obj.create_commit_history(project_name)
+        if project_name == "MATH" or project_name == "LANG":
+            git_project_name = "COMMONS-" + project_name
+        else:
+            git_project_name = project_name
+        obj.create_commit_history(git_project_name)
 
     def create_commit_pairs(self, project_name, jira_urls):
         self.data = self.parse_json(project_name)

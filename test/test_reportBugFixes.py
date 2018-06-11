@@ -43,5 +43,5 @@ class TestReportBugFixes(unittest.TestCase):
 if __name__ == "__main__":
     # if len(sys.argv) > 1:
     #     TestReportBugFixes.project_name = sys.argv.pop()
-    
+
     unittest.main()
