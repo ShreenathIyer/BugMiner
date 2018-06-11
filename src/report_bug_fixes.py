@@ -113,6 +113,8 @@ class ReportBugFixes(object):
             for current_project in all_projects:
                 self.generate_history(current_project)
                 self.create_commit_pairs(current_project.lower(), all_projects_dict)
+        else:
+            print("\n Invalid project name. Refer to projects.csv for list of all projects.")
 
 
 if __name__ == "__main__":

@@ -21,3 +21,5 @@ https://github.com/SonarSource/sonar-web,SONARWEB,https://jira.sonarsource.com/b
 https://github.com/FenixEdu/bennu,BNN,https://jira.fenixedu.org/projects/BNN/issues/BNN-117?filter=allopenissues
 https://github.com/apache/shiro,SHIRO,https://issues.apache.org/jira/browse/
 https://github.com/apache/bookkeeper,BOOKKEEPER,https://issues.apache.org/jira/browse/
+https://github.com/apache/commons-lang,LANG,https://issues.apache.org/jira/browse/
+https://github.com/apache/commons-math,MATH,https://issues.apache.org/jira/browse/

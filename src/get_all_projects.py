@@ -1,5 +1,4 @@
-import pandas as pd
-import csv 
+import csv
 
 class GetAllProjects:
     def __init__(self):
@@ -10,13 +9,7 @@ class GetAllProjects:
         projects = {}
         for row in reader:
             projects[row['Jira Name of the project']] = row['JiraURL']
-        return projects 
-
-        #print(result)
-        #df = pd.read_csv("../resources/projects.csv")
-        #print("df is" + df)
-        #return df['Jira Name of the project'].tolist()
-
+        return projects
 
 if __name__ == "__main__":
      # obj = GetAllProjects()
