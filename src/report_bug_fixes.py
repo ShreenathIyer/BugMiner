@@ -1,3 +1,11 @@
+"""
+ECS 260 Final Project: BugMiner
+Find the commit id pairs which includes a buggy commit and a patch for the bug.
+Args:
+    Param 1: <project_name>
+Returns:
+    This script returns the commit id pairs for bugs and its fixes in a given project.
+"""
 import os
 import json
 import re
@@ -16,6 +24,7 @@ class ReportBugFixes(object):
         self.data = list()
         self.commit_couples = []
 
+    # Argument parser for the script. Returns name of the project.
     def parse_arguments(self):
         parser = argparse.ArgumentParser(add_help=False, formatter_class=argparse.RawTextHelpFormatter)
         parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS,
@@ -24,6 +33,7 @@ class ReportBugFixes(object):
         args = parser.parse_args()
         return args.project_name
 
+    # Returns true if the given URL is for a bug; otherwise returns false
     def is_issue_bug(self, url):
         if not url:
             return False
@@ -43,6 +53,7 @@ class ReportBugFixes(object):
             return False
         return False
 
+    # Parses all json files in resources and returns one json object containing the history of all git commits
     def parse_json(self, current_project):
         all_data = list()
         if current_project == "math" or current_project == "lang":
@@ -56,11 +67,13 @@ class ReportBugFixes(object):
         # print(len(all_data))
         return all_data
 
+    # Returns a valid jira id from regex
     def is_valid_jira_id(self, jira_id):
         if jira_id is not None:
             return jira_id.group().upper()
         return jira_id
 
+    # Creates a new directory for every project if it doesn't exist and writes the final output to a json file
     def dump_to_json(self, commit_pairs, project_name):
         path_to_output_directory = os.path.abspath(
             "../output/" + project_name)
@@ -72,11 +85,13 @@ class ReportBugFixes(object):
         filewrite.close()
         print("[%s]: Writing to json file complete \n" % project_name.upper())
 
+    # Returns the jira URL for a project based on its name
     def create_url(self, project_name, urls_dict, jira_id):
         if project_name in urls_dict and jira_id is not None:
             return urls_dict[project_name] + jira_id.group()
         return None
 
+    # Calls the function to generate git commit history after parsing the argument project name
     def generate_history(self, project_name):
         obj = CreateGitCommitHistory()
         if project_name == "MATH" or project_name == "LANG":
@@ -85,6 +100,7 @@ class ReportBugFixes(object):
             git_project_name = project_name
         obj.create_commit_history(git_project_name)
 
+    # Iterates over the generated resource files to generate the commit pairs containing the bug and the fix
     def create_commit_pairs(self, project_name, jira_urls):
         self.data = self.parse_json(project_name)
         self.commit_couples = [{"count": 0, "commit_pairs": {}}]
@@ -105,6 +121,7 @@ class ReportBugFixes(object):
                         commit_history["commit"]["message"]
         self.dump_to_json(self.commit_couples, project_name.upper())
 
+    # Gets a list of all projects, and runs the create_commit_pairs depending on the argument
     def get_bugs(self):
         project_obj = GetAllProjects()
         all_projects_dict = project_obj.read_projects_from_csv()

@@ -1,9 +1,13 @@
+"""
+This module returns the git commit history for a given project
+"""
 import subprocess
 import os
 import re
 
 
 class CreateGitCommitHistory(object):
+    # Parsing the main header file to fetch the number of pages
     def parse_header(self, file_name):
         header_file = open("./"+file_name, 'r', encoding='utf-8')
         str_page = 0
@@ -14,6 +18,7 @@ class CreateGitCommitHistory(object):
                 return int(str_page[0])
         return str_page
 
+    # Create the main header file returns the number of pages
     def get_page_count(self, project_name):
         curl_command_1 = 'curl -H "Accept: application/vnd.github.cloak-preview" ' \
                          '"https://api.github.com/search/commits?q=repo:apache/'
@@ -24,6 +29,7 @@ class CreateGitCommitHistory(object):
         out, err = curl_this.communicate()
         return self.parse_header("headers.json")
 
+    # Paginate the commit history based on the returned page number
     def create_commit_history(self, project_name):
         pages = self.get_page_count(project_name)
 
