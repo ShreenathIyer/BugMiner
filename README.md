@@ -3,11 +3,16 @@ New Mining algorithm for identifying the pair of commit ids (one with the bug an
 
 This algorithm uses git commit history and the commit ids in JIRA to mine and report bugs.
 
+
 REQUIREMENTS:
+
 python3.x
 
+
 USAGE:
+
 python3 report_bug_fixes.py <project_name>
+
 
 The project names can be found under resources/projects.csv.
 
